@@ -50,9 +50,7 @@ p{margin:0}
 
 /* Cover */
 .cover{padding-block:28px 40px;display:grid;gap:28px}
-.cover-top{display:flex;justify-content:space-between;align-items:center}
-.cover-top{gap:16px}
-.cover-top .eyebrow{min-width:0}
+.cover-top{display:flex;justify-content:flex-start;align-items:center}
 .partner{height:30px;width:auto;max-width:40%;object-fit:contain;display:block;flex:none}
 .mark{font-family:var(--display);font-style:italic;font-size:1rem;color:var(--brass)}
 .horizon{position:relative;aspect-ratio:3/2;max-width:100%;border-radius:2px;overflow:hidden;background:#2a2a2a}
@@ -226,7 +224,7 @@ footer{padding-block:24px;text-align:center;color:var(--muted);font-size:.72rem;
 <main>
   <!-- 01 COVER -->
   <header class="cover" id="top">
-    <div class="cover-top"><span class="eyebrow">Werkudara · Private&nbsp;Journey</span><img class="partner" src="assets/images/takshaka-logo.png" alt="Takshaka Event &amp; Experience"></div>
+    <div class="cover-top"><img class="partner" src="assets/images/takshaka-logo.png" alt="Takshaka Event &amp; Experience"></div>
     <div class="horizon">
       <img src="assets/images/cover-sunset.webp" alt="A couple watching the sun set over the sea from a quiet terrace">
       <div class="coord"><span>8.89° S</span><span>LOMBOK</span><span>116.28° E</span></div>
@@ -405,7 +403,7 @@ const GUIDE = {
       "Traditional massage, Saturday 17 October",
       "Private anniversary dinner, Sunday 18 October"
     ],
-    website: "",
+    website: "https://www.somewherelombok.com/",
     phone: "",          // international format
     mapsQuery: "Somewhere Lombok",
     gallery: [
@@ -453,7 +451,7 @@ const DAYS = [
       {t:"11:00", a:"Transfer to lunch", minor:true},
       {t:"11:30", a:"Lunch", d:"Ayam taliwang and grilled seafood, the Lombok classics.", p:"Keker Taliwang & Grilled Seafood", q:"Keker Taliwang Grilled Seafood Lombok"},
       {t:"12:30", a:"At Leisure", minor:true},
-      {t:"13:00", a:"Your Choice · Canvas Date or Jewellery Date", d:"Paint side by side, or craft a keepsake together. Let Raja know your pick.", key:true},
+      {t:"13:00", a:"Afternoon Activity", d:"Paint side by side, or craft a keepsake together. Let Raja know your pick.", key:true},
       {t:"15:00", a:"Transfer to Kuta Mandalika", minor:true},
       {t:"15:30", a:"Afternoon Coffee Pause", d:"Kuta Mandalika in the late light.", p:"Taku, Kuta Mandalika", q:"Taku Kuta Mandalika Lombok"},
       {t:"17:00", a:"Return to hotel & rest", minor:true},
@@ -506,7 +504,11 @@ const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const TBC = '<span class="tbc">To be confirmed</span>';
 const val = v => v ? esc(v) : TBC;
-const maps = q => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q + ", Lombok");
+const airportMaps = {
+  "Yogyakarta International Airport": "https://maps.app.goo.gl/fSeiT9VQdfrEhaCu9",
+  "Lombok International Airport": "https://maps.app.goo.gl/ZDeJvnHHZSTbsMii9"
+};
+const maps = q => airportMaps[q] || "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q + ", Lombok");
 const mapsRaw = q => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
 const digits = n => (n || "").replace(/\D/g, "");
 const wa = (n, msg) => "https://wa.me/" + digits(n) + (msg ? "?text=" + encodeURIComponent(msg) : "");
