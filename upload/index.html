@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Upload Photos · The Art of Being Together</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap">
+<style>
+/* Same tokens as the guidebook: one column, a form card, then the album grid. */
+:root{
+  --paper:#F5F0E6; --surface:#FBF8F2; --ink:#1A1F3A; --muted:#5A5E72; --line:#E3DACB;
+  --brass:#8C6D33; --brass-soft:#EADFC8; --ok:#3F6B4E; --err:#9A3B2E;
+  --display:"EB Garamond", Garamond, "Times New Roman", Georgia, serif;
+  --body:"Jost", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --col:34rem; color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font:300 16px/1.6 var(--body);-webkit-font-smoothing:antialiased;
+  padding:env(safe-area-inset-top,0px) max(16px,env(safe-area-inset-right,0px)) calc(40px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+main{max-width:var(--col);margin:0 auto;display:grid;gap:28px;padding-top:28px}
+h1,h2{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance}
+p{margin:0}
+.eyebrow{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.top img{height:30px;width:auto;max-width:40%;display:block}
+.back{color:var(--muted);text-decoration:none;font-size:.85rem}
+.back:hover{color:var(--ink)}
+.head{display:grid;gap:10px}
+.head h1{font-size:clamp(2.4rem,11vw,3.2rem);line-height:1.02}
+.head h1 em{color:var(--brass)}
+.lede{color:var(--muted)}
+.card{background:var(--surface);border:1px solid var(--line);padding:20px 18px;display:grid;gap:16px}
+label{display:grid;gap:6px;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+input[type=text],input[type=password]{font:400 1rem var(--body);color:var(--ink);background:var(--paper);border:1px solid var(--line);padding:12px;border-radius:0;letter-spacing:normal;text-transform:none}
+input:focus-visible,.btn:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border:1px solid var(--brass);background:var(--brass);color:#FFFDF8;
+  font:400 .82rem/1 var(--body);letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border-radius:0;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--brass)}
+.btn[disabled]{opacity:.5;cursor:default}
+.file{position:relative}
+.file input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.hint{font-size:.85rem;color:var(--muted)}
+.queue{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.queue li{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:center;font-size:.9rem}
+.queue img{width:44px;height:44px;object-fit:cover;display:block;background:var(--brass-soft)}
+.queue .name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.queue .st{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.queue .st.ok{color:var(--ok)} .queue .st.err{color:var(--err)}
+.bar{grid-column:2/-1;height:2px;background:var(--line)}
+.bar i{display:block;height:100%;width:0;background:var(--brass);transition:width .2s}
+.album-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.album-head h2{font-size:1.9rem}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.grid button{padding:0;border:0;background:var(--brass-soft);cursor:zoom-in;aspect-ratio:1/1;overflow:hidden;max-width:100%}
+.grid img{width:100%;height:100%;object-fit:cover;display:block}
+.empty{padding:28px 0;text-align:center;color:var(--muted);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.msg{font-size:.9rem}
+.msg.err{color:var(--err)}
+dialog{border:0;padding:0;background:transparent;max-width:min(96vw,900px);max-height:92vh}
+dialog::backdrop{background:rgba(16,18,30,.88)}
+dialog img{display:block;max-width:100%;max-height:82vh;margin:0 auto}
+dialog .cap{color:#F5F0E6;font-size:.85rem;text-align:center;padding-top:10px}
+dialog .close{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:calc(12px + env(safe-area-inset-right,0px));background:transparent;border:1px solid #F5F0E6;color:#F5F0E6;min-height:40px;padding:0 14px;font:400 .75rem var(--body);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <div class="top">
+    <a class="back" href="/">← Back to the guidebook</a>
+    <img src="/assets/images/takshaka-logo.png" alt="Takshaka Event &amp; Experience">
+  </div>
+
+  <header class="head">
+    <span class="eyebrow">Lombok · 16–19 October 2026</span>
+    <h1>Share a <em>Moment</em></h1>
+    <p class="lede">Tap the button and choose photos from your phone. They go straight into the album.</p>
+  </header>
+
+  <div class="card">
+    <div class="file">
+      <span class="btn" id="pickLabel" style="width:100%;min-height:56px">Upload photos</span>
+      <input type="file" id="files" accept="image/*" multiple aria-labelledby="pickLabel">
+    </div>
+    <p class="msg" id="msg" role="status"></p>
+    <ul class="queue" id="queue"></ul>
+  </div>
+
+  <a class="btn ghost" href="/photos">See all photos</a>
+</main>
+
+<script>
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+/* Resize to at most 1600px on the long edge and re-encode as JPEG. */
+async function shrink(file) {
+  try {
+    const bmp = await createImageBitmap(file, { imageOrientation: "from-image" });
+    const scale = Math.min(1, 1600 / Math.max(bmp.width, bmp.height));
+    const c = document.createElement("canvas");
+    c.width = Math.round(bmp.width * scale); c.height = Math.round(bmp.height * scale);
+    c.getContext("2d").drawImage(bmp, 0, 0, c.width, c.height);
+    const blob = await new Promise((r) => c.toBlob(r, "image/jpeg", 0.82));
+    if (blob) return blob;
+  } catch (e) {}
+  if (["image/jpeg", "image/png", "image/webp"].includes(file.type)) return file;
+  throw new Error("This photo format can't be read here. Try a JPEG or PNG.");
+}
+
+function put(url, blob, onProgress) {
+  return new Promise((resolve, reject) => {
+    const x = new XMLHttpRequest();
+    x.open("PUT", url);
+    x.setRequestHeader("Content-Type", blob.type);
+    x.upload.onprogress = (e) => e.lengthComputable && onProgress(e.loaded / e.total);
+    x.onload = () => (x.status >= 200 && x.status < 300 ? resolve() : reject(new Error(`Storage refused the upload (${x.status}).`)));
+    x.onerror = () => reject(new Error("Connection dropped. Check your signal and try again."));
+    x.send(blob);
+  });
+}
+
+async function uploadOne(file, row) {
+  const st = row.querySelector(".st"), bar = row.querySelector(".bar i");
+  const set = (t, cls = "") => { st.textContent = t; st.className = "st " + cls; };
+  try {
+    set("Preparing");
+    const blob = await shrink(file);
+    set("Uploading");
+    const r = await fetch("/api/upload-url", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ type: blob.type }),
+    });
+    const data = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(data.error || "Couldn't start the upload.");
+    await put(data.url, blob, (p) => (bar.style.width = Math.round(p * 100) + "%"));
+    bar.style.width = "100%";
+    set("Added", "ok");
+    return true;
+  } catch (e) {
+    set("Failed", "err");
+    $("#msg").textContent = e.message;
+    $("#msg").className = "msg err";
+    return false;
+  }
+}
+
+$("#files").addEventListener("change", async (e) => {
+  const files = [...e.target.files];
+  e.target.value = "";
+  if (!files.length) return;
+  $("#msg").textContent = ""; $("#msg").className = "msg";
+  const rows = files.map((f) => {
+    const li = document.createElement("li");
+    li.innerHTML = `<img alt=""><span class="name">${esc(f.name)}</span><span class="st">Waiting</span><span class="bar"><i></i></span>`;
+    li.querySelector("img").src = URL.createObjectURL(f);
+    $("#queue").prepend(li);
+    return li;
+  });
+  let added = 0;
+  for (let i = 0; i < files.length; i++) if (await uploadOne(files[i], rows[i])) added++;
+  if (added) {
+    $("#msg").innerHTML = (added === 1 ? "1 photo added." : `${added} photos added.`) + ' <a href="/photos" style="color:inherit">See them in the album</a>.';
+    $("#msg").className = "msg";
+  }
+});
+</script>
+</body>
+</html>
