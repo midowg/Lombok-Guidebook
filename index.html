@@ -585,7 +585,7 @@ $("#staySheet").innerHTML = `
   <div class="sheet-head"><h3>${esc(H.name)}</h3></div>
   ${H.about ? `<p class="lede">${esc(H.about)}</p>` : ""}
   <dl class="dl">
-    <dt>Room</dt><dd>${val(H.room)}</dd>
+    ${H.room ? `<dt>Room</dt><dd>${esc(H.room)}</dd>` : ""}
     <dt>Location</dt><dd>${esc(H.location)}</dd>
     <dt>From Airport</dt><dd>${esc(H.transfer)}</dd>
     <dt>Check-in</dt><dd class="num">${esc(H.checkin)}</dd>
