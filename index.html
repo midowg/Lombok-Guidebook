@@ -1,0 +1,730 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><style>[hidden]{display:none!important}body{margin:0}img{max-width:100%}</style></head><body>
+<title>The Art of Being Together</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Jost:wght@300;400;500&display=swap">
+<style>
+/* Layout: a single editorial column, cover → concierge "now" card → chapters; fixed quick-access bar at the thumb. */
+:root{
+  --paper:#F5F0E6;      /* cream */
+  --surface:#FBF8F2;
+  --ink:#1A1F3A;        /* deep navy */
+  --muted:#5A5E72;
+  --line:#E3DACB;
+  --brass:#8C6D33;      /* kraton brass, used sparingly */
+  --brass-soft:#EADFC8;
+  --sea:#2F5A5E;
+  --sky-a:#DCE4E2; --sky-b:#E9E4D8;
+  --display:"Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --body:"Jost", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --col:34rem;
+}
+/* Single light look: always ivory linen, regardless of the phone's dark mode */
+:root{color-scheme:light}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:16px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-weight:300;font-size:16px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-bottom:calc(84px + env(safe-area-inset-bottom,0px));-webkit-font-smoothing:antialiased}
+main{max-width:var(--col);margin:0 auto}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;letter-spacing:-.005em}
+p{margin:0}
+.eyebrow{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.num{font-variant-numeric:tabular-nums}
+
+/* Cover */
+.cover{padding-block:28px 40px;display:grid;gap:28px}
+.cover-top{display:flex;justify-content:space-between;align-items:center}
+.cover-top{gap:16px}
+.cover-top .eyebrow{min-width:0}
+.partner{height:30px;width:auto;max-width:40%;object-fit:contain;display:block;flex:none}
+.mark{font-family:var(--display);font-style:italic;font-size:1rem;color:var(--brass)}
+.horizon{position:relative;aspect-ratio:3/2;max-width:100%;border-radius:2px;overflow:hidden;background:#2a2a2a}
+.horizon img{display:block;width:100%;height:100%;object-fit:cover;animation:settle 2.4s cubic-bezier(.2,.7,.2,1) both}
+.horizon::after{content:"";position:absolute;inset:55% 0 0 0;background:linear-gradient(180deg,transparent,rgba(10,14,15,.7))}
+@keyframes settle{from{transform:scale(1.06)}to{transform:scale(1)}}
+.horizon .sun{position:absolute;left:50%;top:58%;width:34%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle at 50% 50%,var(--brass) 0 62%,transparent 63%);opacity:.85;
+  clip-path:inset(0 0 50% 0);animation:rise 2.4s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{top:66%}to{top:58%}}
+.horizon .fig{position:absolute;inset:auto 0 9% 0;text-align:center;font-family:var(--display);font-size:clamp(4rem,22vw,7rem);line-height:1;color:var(--paper);opacity:.92;font-style:italic}
+.horizon .coord{z-index:1;position:absolute;left:12px;right:12px;bottom:10px;display:flex;justify-content:space-between;font-size:.62rem;letter-spacing:.18em;color:#F3F4F1;opacity:.85}
+.cover h1{font-size:clamp(2.4rem,11vw,3.4rem);line-height:1.02}
+.cover h1 em{color:var(--brass)}
+.cover .tag{font-family:var(--display);font-style:italic;font-size:1.15rem;color:var(--muted);margin-top:10px}
+.cover .meta{display:grid;gap:4px;border-top:1px solid var(--line);padding-top:16px}
+.cover .names{font-size:1.05rem;font-weight:400}
+.cover .where{color:var(--muted);font-size:.92rem}
+
+/* Concierge card */
+.now{background:var(--surface);border:1px solid var(--line);padding:18px 18px 16px;display:grid;gap:8px;margin-bottom:8px}
+.now.alert{border-color:var(--brass);background:var(--brass-soft)}
+.now .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.now .what{font-family:var(--display);font-size:1.35rem;line-height:1.2}
+.now .when{font-size:.9rem;color:var(--muted)}
+.now .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+
+/* Sections */
+section.chap{padding-block:56px 8px;display:grid;gap:22px}
+.chap-head{display:grid;gap:10px}
+.chap-head h2{font-size:clamp(1.9rem,8vw,2.4rem);line-height:1.08}
+.lede{color:var(--muted);max-width:30rem}
+.rule{height:1px;background:var(--line);border:0;margin:0}
+
+/* Overview */
+.days{display:grid;gap:0;border-top:1px solid var(--line)}
+.day-link{display:grid;grid-template-columns:4.2rem 1fr auto;gap:14px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.day-link .d{font-size:.72rem;letter-spacing:.16em;color:var(--muted)}
+.day-link .t{font-family:var(--display);font-size:1.2rem;line-height:1.25}
+.day-link .s{display:block;font-family:var(--body);font-size:.88rem;color:var(--muted);margin-top:2px}
+.day-link .arr{color:var(--muted)}
+.day-link.special .d,.day-link.special .t{color:var(--brass)}
+
+/* Detail sheets */
+.sheet{background:var(--surface);border:1px solid var(--line);padding:20px 18px;display:grid;gap:16px}
+.sheet-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sheet-head h3{font-size:1.35rem}
+.dl{display:grid;grid-template-columns:7.2rem 1fr;gap:9px 12px;margin:0;font-size:.95rem}
+.dl dt{color:var(--muted);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;padding-top:3px}
+.dl dd{margin:0;min-width:0;font-weight:400}
+.route{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:10px}
+.route .code{font-family:var(--display);font-size:2.4rem;line-height:1}
+.route .t{font-size:.85rem;color:var(--muted)}
+.route .mid{text-align:center;color:var(--muted);font-size:.72rem;letter-spacing:.14em;padding-bottom:8px}
+.route .r{text-align:right}
+.tbc{color:var(--muted);font-weight:300;font-style:italic}
+.note{font-size:.88rem;color:var(--muted)}
+
+/* Buttons */
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px;border:1px solid var(--brass);
+  color:var(--brass);background:transparent;font:400 .82rem/1 var(--body);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;cursor:pointer;border-radius:0}
+.btn.solid{background:var(--brass);color:#FFFDF8}
+.btn:hover{background:var(--brass);color:#FFFDF8}
+.btn:focus-visible,.tab:focus-visible,.nav a:focus-visible,.day-link:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.btn[aria-disabled="true"]{border-color:var(--line);color:var(--muted);background:transparent;cursor:default}
+.btn[aria-disabled="true"]:hover{background:transparent;color:var(--muted)}
+
+/* People */
+.person{display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:start}
+.avatar{width:56px;height:56px;border-radius:50%;background:var(--brass-soft);display:grid;place-items:center;font-family:var(--display);font-size:1.4rem;color:var(--brass);overflow:hidden}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.person .role{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.person .name{font-family:var(--display);font-size:1.35rem;line-height:1.2}
+.person .body{display:grid;gap:8px;min-width:0}
+.phone{font-variant-numeric:tabular-nums;user-select:all}
+
+/* Host feature */
+.host-feature{display:grid;grid-template-columns:minmax(0,9.5rem) 1fr;gap:18px;align-items:start;background:var(--surface);border:1px solid var(--line);padding:18px}
+.host-feature .portrait{aspect-ratio:4/5;max-width:100%;overflow:hidden;background:var(--brass-soft)}
+.host-feature .portrait img{width:100%;height:100%;object-fit:cover;display:block}
+.host-feature .who{display:grid;gap:6px;min-width:0}
+.host-feature .name{font-family:var(--display);font-size:2rem;line-height:1.05}
+.host-feature .title{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.roles{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.roles span{font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--brass);border:1px solid var(--brass);padding:4px 8px}
+.host-feature .intro{grid-column:1/-1;font-family:var(--display);font-style:italic;font-size:1.12rem;line-height:1.5;border-left:2px solid var(--brass);padding-left:14px}
+.host-feature .sign{grid-column:1/-1;font-size:.85rem;color:var(--muted);margin-top:-8px;padding-left:16px}
+.host-feature .dl,.host-feature .btns{grid-column:1/-1}
+@media (max-width:360px){.host-feature{grid-template-columns:1fr}.host-feature .portrait{max-width:12rem}}
+
+/* Itinerary */
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);background:var(--surface)}
+.tab{appearance:none;border:0;background:transparent;color:var(--muted);padding:10px 4px;font:400 .7rem/1.25 var(--body);letter-spacing:.12em;text-transform:uppercase;cursor:pointer;display:grid;gap:2px;justify-items:center}
+.tab b{font-family:var(--display);font-weight:400;font-size:1.35rem;letter-spacing:0;color:var(--ink)}
+.tab+.tab{border-left:1px solid var(--line)}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--paper)}
+.tab[aria-selected="true"] b{color:var(--paper)}
+.tab.special b{color:var(--brass)}
+.tab.special[aria-selected="true"] b{color:var(--brass)}
+.day-head{display:grid;gap:6px;padding-top:6px}
+.day-head h3{font-size:1.9rem;line-height:1.1}
+.day-head .s{color:var(--muted)}
+.anniv{border-top:1px solid var(--brass);border-bottom:1px solid var(--brass);padding:14px 0;display:flex;justify-content:space-between;align-items:center;gap:10px;color:var(--brass)}
+.anniv .y{font-family:var(--display);font-size:1.3rem}
+.anniv .y small{display:block;font-family:var(--body);font-size:.65rem;letter-spacing:.18em;color:var(--muted)}
+.anniv .line{flex:1;height:1px;background:var(--brass);opacity:.5}
+.tl{list-style:none;margin:0;padding:0;display:grid}
+.tl li{display:grid;grid-template-columns:3.6rem 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.tl li.minor{padding:7px 0}
+.tl li.minor .act{font-family:var(--body);font-size:.88rem;color:var(--muted);font-weight:300}
+.tl .time{font-size:.95rem;font-weight:400;font-variant-numeric:tabular-nums;padding-top:2px}
+.tl .time small{display:block;font-size:.62rem;letter-spacing:.12em;color:var(--muted);font-weight:300}
+.tl li.minor .time{font-size:.85rem;color:var(--muted);font-weight:300;padding-top:0}
+.tl .act{font-family:var(--display);font-size:1.15rem;line-height:1.3}
+.tl .desc{font-size:.9rem;color:var(--muted);margin-top:2px}
+.tl .place{display:inline-flex;align-items:center;gap:6px;margin-top:6px;font-size:.8rem;letter-spacing:.06em;text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:1px}
+.tl li.key .act{color:var(--brass)}
+.tl li.now-item{background:linear-gradient(90deg,var(--brass-soft),transparent)}
+.pill{display:inline-block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--line);color:var(--muted);padding:2px 7px;margin-left:6px;vertical-align:middle;font-family:var(--body);font-weight:400}
+
+/* Experiences */
+.exp{display:grid;gap:0;border-top:1px solid var(--line)}
+.exp article{padding:20px 0;border-bottom:1px solid var(--line);display:grid;gap:6px}
+.exp h3{font-size:1.5rem;font-style:italic}
+.exp .when{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brass)}
+
+/* Good to know */
+.know{display:grid;gap:0;border-top:1px solid var(--line)}
+.know div{display:grid;grid-template-columns:7.2rem 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.know dt{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.know dd{margin:0;min-width:0}
+
+/* Closing */
+.closing{padding-block:72px 40px;text-align:left;display:grid;gap:18px}
+.closing h2{font-size:clamp(2.1rem,9vw,2.8rem);font-style:italic;line-height:1.08}
+.closing .sig{border-top:1px solid var(--line);padding-top:18px;display:grid;gap:2px}
+.closing .sig b{font-weight:400;font-family:var(--display);font-size:1.2rem}
+
+/* Quick-access bar */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--ink);
+  padding:0 max(8px,env(safe-area-inset-right,0px)) env(safe-area-inset-bottom,0px) max(8px,env(safe-area-inset-left,0px))}
+.nav ul{list-style:none;margin:0 auto;padding:0;max-width:var(--col);display:grid;grid-template-columns:repeat(4,1fr)}
+.nav a{display:grid;justify-items:center;gap:4px;padding:12px 4px 12px;color:var(--paper);opacity:.7;text-decoration:none;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase}
+.nav a.on{opacity:1}
+.nav a.on::before{background:var(--brass)}
+.nav a::before{content:"";width:18px;height:2px;background:transparent}
+.toast{position:fixed;left:50%;bottom:calc(76px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 16px;font-size:.85rem;z-index:30;border:1px solid var(--brass)}
+@media print{.nav,.toast,#now,.tabs,body::before{display:none!important}body{padding-bottom:0}.horizon img{animation:none}section.chap{break-inside:auto}.sheet,.tl li,.exp article{break-inside:avoid}}
+footer{padding-block:24px;text-align:center;color:var(--muted);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
+</style>
+
+<main>
+  <!-- 01 COVER -->
+  <header class="cover" id="top">
+    <div class="cover-top"><span class="eyebrow">Werkudara · Private&nbsp;Journey</span><img class="partner" src="assets/images/takshaka-logo.png" alt="Takshaka Event &amp; Experience"></div>
+    <div class="horizon">
+      <img src="assets/images/cover-sunset.webp" alt="A couple watching the sun set over the sea from a quiet terrace">
+      <div class="coord"><span>8.89° S</span><span>LOMBOK</span><span>116.28° E</span></div>
+    </div>
+    <div>
+      <h1>The Art of <em>Being</em> Together</h1>
+      <p class="tag">15 Years. More to Discover.</p>
+    </div>
+    <div class="meta">
+      <span class="names">GKR Bendara &amp; KPH Yudanegara</span>
+      <span class="where num">Lombok &nbsp;|&nbsp; 16–19 October 2026</span>
+    </div>
+  </header>
+
+  <!-- Concierge: what's next (filled by script) -->
+  <div id="now" class="now" aria-live="polite">
+    <span class="eyebrow">Up next</span>
+    <div class="what">Your journey begins Friday, 16 October</div>
+    <div class="when num">Airport check-in from 16:00 WIB · Yogyakarta International Airport</div>
+  </div>
+
+  <!-- 02 WELCOME -->
+  <section class="chap" id="welcome">
+    <div class="chap-head">
+      <span class="eyebrow">Welcome</span>
+      <h2>A Different Kind of Celebration</h2>
+      <p class="lede">Fifteen years of shared stories. Four days to slow down, explore, and create a few more.</p>
+    </div>
+  </section>
+
+  <!-- 03 OVERVIEW -->
+  <section class="chap" id="overview">
+    <div class="chap-head">
+      <span class="eyebrow">Journey Overview</span>
+      <h2>Four Days, Your Way</h2>
+    </div>
+    <nav class="days" id="overviewList" aria-label="Days"></nav>
+  </section>
+
+  <!-- 04 FLIGHTS -->
+  <section class="chap" id="flights">
+    <div class="chap-head">
+      <span class="eyebrow">Your Flights</span>
+      <h2>The Journey Begins</h2>
+    </div>
+    <div id="flightCards" style="display:grid;gap:14px"></div>
+    <div class="sheet" id="departSheet"></div>
+    <div class="sheet" id="arrivalSheet"></div>
+  </section>
+
+  <!-- 05 STAY -->
+  <section class="chap" id="stay">
+    <div class="chap-head">
+      <span class="eyebrow">Your Stay</span>
+      <h2>A Place to Call Your Own</h2>
+      <p class="lede">Your island retreat, thoughtfully selected for a restful stay.</p>
+    </div>
+    <div class="sheet" id="staySheet"></div>
+  </section>
+
+  <!-- 06 ITINERARY -->
+  <section class="chap" id="itinerary">
+    <div class="chap-head">
+      <span class="eyebrow">Daily Itinerary</span>
+      <h2>Your Days, Thoughtfully Curated</h2>
+    </div>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div id="dayPanel" role="tabpanel" style="display:grid;gap:18px"></div>
+  </section>
+
+  <!-- 07 EXPERIENCES -->
+  <section class="chap" id="experiences">
+    <div class="chap-head">
+      <span class="eyebrow">Curated Experiences</span>
+      <h2>Moments Worth Sharing</h2>
+    </div>
+    <div class="exp" id="expList"></div>
+  </section>
+
+  <!-- 08 HOST -->
+  <section class="chap" id="host">
+    <div class="chap-head">
+      <span class="eyebrow">Your Private Host</span>
+      <h2>Here, Whenever You Need Us.</h2>
+      <p class="lede">Every little detail, thoughtfully taken care of.</p>
+    </div>
+    <div id="hostFeature"></div>
+    <div class="chap-head" style="padding-top:18px">
+      <span class="eyebrow">Also With You</span>
+    </div>
+    <div id="people" style="display:grid;gap:14px"></div>
+  </section>
+
+  <!-- 09 GOOD TO KNOW -->
+  <section class="chap" id="know">
+    <div class="chap-head">
+      <span class="eyebrow">Good to Know</span>
+      <h2>The Little Things That Matter</h2>
+    </div>
+    <dl class="know" id="knowList"></dl>
+  </section>
+
+  <!-- 10 CLOSING -->
+  <section class="closing" id="closing">
+    <h2>The Best Is Still Unwritten.</h2>
+    <p class="lede">Here's to fifteen wonderful years, and everything still to come.</p>
+    <p style="font-family:var(--display);font-size:1.2rem">Happy 15th Anniversary.</p>
+    <div class="sig">
+      <span class="note">With warmest wishes,</span>
+      <b>Werkudara Group</b>
+      <span class="eyebrow">Creating True Value.</span>
+    </div>
+  </section>
+  <footer>Lombok · 16–19 October 2026</footer>
+</main>
+
+<nav class="nav" aria-label="Quick access">
+  <ul>
+    <li><a href="#flights" data-sec="flights">Flights</a></li>
+    <li><a href="#stay" data-sec="stay">Stay</a></li>
+    <li><a href="#itinerary" data-sec="itinerary">Itinerary</a></li>
+    <li><a href="#host" data-sec="host">Host</a></li>
+  </ul>
+</nav>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+/* ============================================================
+   CONTENT — the team updates this block only.
+   Empty string "" = not yet confirmed → shown as "To be confirmed"
+   and its button stays inactive. Links to tickets/boarding passes
+   should point to access-restricted files (e.g. Drive, shared only
+   with the guests).
+   WhatsApp numbers: international format, e.g. "6281234567890".
+   ============================================================ */
+const GUIDE = {
+  booking: "",   // airline booking reference (PNR)
+  flights: {
+    out: {
+      label: "Departure", date: "Friday, 16 October",
+      airline: "Super Air Jet", flight: "IU 778",
+      fromCode: "YIA", from: "Yogyakarta International Airport", terminal: "Terminal A",
+      toCode: "LOP", to: "Lombok International Airport",
+      dep: "17:45", depTz: "WIB", arr: "20:15", arrTz: "WITA",
+      checkin: "16:00 WIB", baggage: "10 kg checked · 7 kg cabin, per guest",
+      eticket: "", boardingPass: ""
+    },
+    ret: {
+      label: "Return", date: "Monday, 19 October",
+      airline: "Super Air Jet", flight: "IU 777",
+      fromCode: "LOP", from: "Lombok International Airport", terminal: "Terminal A",
+      toCode: "YIA", to: "Yogyakarta International Airport",
+      dep: "06:10", depTz: "WITA", arr: "06:40", arrTz: "WIB",
+      checkin: "04:45 WITA", baggage: "10 kg checked · 7 kg cabin, per guest",
+      eticket: "", boardingPass: ""
+    }
+  },
+  departureAirport: {   // Yogyakarta, 16 Oct
+    assist: "Concordia lounge assistance, from the airport rail station to boarding",
+    train: ""           // e.g. "YIA Airport Rail Link, 14:xx from Tugu"
+  },
+  arrival: {            // Lombok, 16 Oct
+    meetingPoint: "Arrivals hall, Lombok International Airport. Raja will meet you inside; your car waits at VIP parking.",
+  },
+  hotel: {
+    name: "Somewhere Lombok",
+    room: "",
+    about: "A barefoot-luxury hideaway with a beach-chic spirit. Built from local materials and handcraft, and devoted to slow days and well-being.",
+    transfer: "Around 45 minutes from Lombok International Airport",
+    location: "South Lombok, near Kuta Mandalika",
+    checkin: "Friday, 16 October · approx. 22:25",
+    checkout: "Monday, 19 October · before 04:00",
+    comforts: [
+      "Breakfast daily, 07:00–08:00",
+      "Traditional massage, Saturday 17 October",
+      "Private anniversary dinner, Sunday 18 October"
+    ],
+    website: "",
+    phone: "",          // international format
+    mapsQuery: "Somewhere Lombok"
+  },
+  people: {
+    host:      { name: "Raja",   role: "Your Host in Lombok",       wa: "628112831929", photo: "assets/images/raja-avatar.webp", note: "Werkudara Hospitality Specialist",
+                 roles: ["Hospitality", "Tour Assistant", "Emergency Contact"],
+                 with: "Arrival on 16 October until your flight home on 19 October",
+                 intro: "Welcome to Lombok. I'll be with you from the moment you land until your early flight home, looking after the schedule, transfers, reservations and any change of plan. For anything at all, whether a question, a request or something urgent, I'm your first call.",
+                 portrait: "assets/images/raja-portrait.webp" },
+    companion: { name: "Bulqis", role: "Airport Companion · Yogyakarta", wa: "6281127009881", photo: "assets/images/bulqis.webp", note: "With you at Yogyakarta International Airport on 16 October." },
+    driver:    { name: "",       role: "Your Driver in Lombok",     wa: "", vehicle: "Toyota Zenix", photo: "" },
+    emergency: { name: "Rama",   role: "Emergency Assistance",      wa: "628112949013", note: "For anything urgent during your journey.", call: true, photo: "assets/images/rama.webp" }
+  },
+  departureMorning: {   // 19 Oct
+    wakeUp: "",          // e.g. "03:15"
+    checkout: "",        // e.g. "03:45"
+    breakfastBox: "",    // e.g. "Breakfast box prepared by the hotel"
+    meetingPoint: "Hotel lobby"
+  }
+};
+
+/* Itinerary — times are local (WIB in Yogyakarta, WITA in Lombok). type: key | minor */
+const DAYS = [
+  { n:"01", date:"2026-10-16", dow:"Friday", short:"16 Oct", title:"The Arrival", sub:"A warm welcome and time to unwind.",
+    items:[
+      {t:"16:00", tz:"WIB", a:"Airport Check-in", d:"Concordia lounge assistance from the airport rail station. Bulqis will be with you.", p:"Yogyakarta International Airport", q:"Yogyakarta International Airport", key:true},
+      {t:"17:45", tz:"WIB", a:"Flight to Lombok · IU 778", d:"Arriving 20:15 local time (WITA, one hour ahead).", key:true},
+      {t:"20:15", a:"Arrival in Lombok", d:"Raja meets you in the arrivals hall and assists with baggage.", p:"Lombok International Airport", q:"Lombok International Airport"},
+      {t:"20:35", a:"Transfer to dinner · local bites on board", minor:true},
+      {t:"21:05", a:"Dinner", d:"An easy, à la carte first evening.", p:"Three Sisters Dumpling, Kuta", q:"Three Sisters Dumpling Kuta Lombok"},
+      {t:"22:05", a:"Transfer to hotel", minor:true},
+      {t:"22:25", a:"Check-in & Rest", p:"Somewhere Lombok", q:"Somewhere Lombok"}
+    ]},
+  { n:"02", date:"2026-10-17", dow:"Saturday", short:"17 Oct", title:"The Art of Two", sub:"Discover, create, and share something new.",
+    items:[
+      {t:"07:00", a:"Breakfast", p:"Somewhere Lombok", q:"Somewhere Lombok"},
+      {t:"08:00", a:"At Leisure", minor:true},
+      {t:"09:30", a:"Jet Lag Remedy", d:"A traditional massage to release the journey.", p:"Somewhere Lombok", q:"Somewhere Lombok", key:true},
+      {t:"11:00", a:"Transfer to lunch", minor:true},
+      {t:"11:30", a:"Lunch", d:"Ayam taliwang and grilled seafood, the Lombok classics.", p:"Keker Taliwang & Grilled Seafood", q:"Keker Taliwang Grilled Seafood Lombok"},
+      {t:"12:30", a:"At Leisure", minor:true},
+      {t:"13:00", a:"Your Choice · Canvas Date or Jewellery Date", d:"Paint side by side, or craft a keepsake together. Let Raja know your pick.", key:true},
+      {t:"15:00", a:"Transfer to Kuta Mandalika", minor:true},
+      {t:"15:30", a:"Afternoon Coffee Pause", d:"Kuta Mandalika in the late light.", p:"Taku, Kuta Mandalika", q:"Taku Kuta Mandalika Lombok"},
+      {t:"17:00", a:"Return to hotel & rest", minor:true},
+      {t:"18:30", a:"Transfer to dinner", minor:true},
+      {t:"19:00", a:"Dinner", d:"A set menu of Indonesian flavours.", p:"Pawon Nusantara", q:"Pawon Nusantara Lombok"},
+      {t:"20:00", a:"Return to hotel", minor:true}
+    ]},
+  { n:"03", date:"2026-10-18", dow:"Sunday", short:"18 Oct", title:"Fifteen Years Together", sub:"A day to celebrate the journey so far.", special:true,
+    items:[
+      {t:"07:00", a:"Breakfast", p:"Somewhere Lombok", q:"Somewhere Lombok"},
+      {t:"08:40", a:"Transfer to the kitchen", minor:true},
+      {t:"09:00", a:"The Kitchen Date", d:"Cooking together. Two perspectives, one shared creation.", p:"Samarasa Kitchen", q:"Samarasa Kitchen Lombok", key:true},
+      {t:"11:00", a:"Lunch", p:"Kenza Cafe & Restaurant", q:"Kenza Cafe Restaurant Lombok"},
+      {t:"12:00", a:"At Leisure", minor:true},
+      {t:"13:00", a:"Kenza Sunday Market", d:"A relaxed browse through local makers and flavours.", p:"Kenza Cafe & Restaurant", q:"Kenza Cafe Restaurant Lombok"},
+      {t:"15:00", a:"Transfer to the beach", minor:true},
+      {t:"15:30", a:"Afternoon Coffee Pause", d:"By the sea at Biras.", p:"Biras Beach Bar & Resto", q:"Biras Beach Bar Resto Lombok"},
+      {t:"17:00", a:"Return to hotel & rest", minor:true},
+      {t:"19:00", a:"An Evening to Remember", d:"An intimate anniversary supper at the hotel.", p:"Somewhere Lombok", q:"Somewhere Lombok", key:true}
+    ]},
+  { n:"04", date:"2026-10-19", dow:"Monday", short:"19 Oct", title:"Homeward Bound", sub:"An early departure, with new memories to take home.", departure:true,
+    items:[
+      {t:"wakeUp", a:"Wake-up Call", key:true},
+      {t:"checkout", a:"Hotel Check-out", d:"breakfastBox", p:"Hotel lobby"},
+      {t:"04:00", a:"Private Transfer to Airport", d:"Around 45 minutes, with breakfast served on board.", key:true},
+      {t:"04:45", a:"Airport Check-in", p:"Lombok International Airport", q:"Lombok International Airport"},
+      {t:"06:10", a:"Flight Departure · IU 777", d:"Arriving Yogyakarta 06:40 WIB.", key:true}
+    ]}
+];
+
+const EXPERIENCES = [
+  { when:"Saturday · 17 October", title:"The Shared Pause", text:"Nothing to achieve. Nowhere to rush. Just time to be present.", what:"Jet Lag Remedy · Traditional massage at the hotel", day:1 },
+  { when:"Saturday & Sunday · 17–18 October", title:"The Art of Two", text:"Two perspectives. One shared creation. A little creativity, a little laughter.", what:"Canvas or Jewellery Date, your choice (17 Oct) · The Kitchen Date at Samarasa Kitchen (18 Oct)", day:1 },
+  { when:"Sunday · 18 October", title:"An Evening to Remember", text:"Good food, a beautiful setting, and fifteen years of stories worth celebrating.", what:"Intimate Supper · Somewhere Lombok", day:2 }
+];
+
+const KNOW = [
+  ["Weather", "Mid-October is the tail of the dry season: typically 24–32°C, sunny, with an occasional late-afternoon shower."],
+  ["What to Wear", "Light linen and breathable cottons by day. Smart-casual for dinners, something a touch more special for Sunday evening."],
+  ["What to Bring", "Sunglasses, sun protection, a light layer for the early flight home, personal medication, and ID matching your tickets."],
+  ["Local Time", "Lombok is on WITA, one hour ahead of Yogyakarta. All Lombok times in this guide are local."],
+  ["Local Tips", "Some smaller venues prefer cash. Raja can arrange anything you need, from a quiet table to a change of plan."]
+];
+
+/* ============================================================ */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const TBC = '<span class="tbc">To be confirmed</span>';
+const val = v => v ? esc(v) : TBC;
+const maps = q => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q + ", Lombok");
+const mapsRaw = q => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
+const digits = n => (n || "").replace(/\D/g, "");
+const wa = (n, msg) => "https://wa.me/" + digits(n) + (msg ? "?text=" + encodeURIComponent(msg) : "");
+
+function btn(label, href, opts = {}) {
+  const cls = "btn" + (opts.solid ? " solid" : "");
+  if (!href) return `<span class="${cls}" aria-disabled="true" title="Available once confirmed">${esc(opts.pending || label)}</span>`;
+  return `<a class="${cls}" href="${esc(href)}" target="_blank" rel="noopener">${esc(label)}</a>`;
+}
+function copyBtn(text) {
+  return text ? `<button class="btn" type="button" data-copy="${esc(text)}">Copy number</button>` : "";
+}
+function fmtPhone(n) { const d = digits(n); return d ? "+" + d : ""; }
+
+/* Overview */
+$("#overviewList").innerHTML = DAYS.map((d, i) => `
+  <a class="day-link${d.special ? " special" : ""}" href="#itinerary" data-day="${i}">
+    <span class="d num">${d.short.toUpperCase()}</span>
+    <span class="t">${esc(d.title)}<span class="s">${esc(d.sub)}</span></span>
+    <span class="arr" aria-hidden="true">→</span>
+  </a>`).join("");
+
+/* Flights */
+function flightCard(f) {
+  return `<div class="sheet">
+    <div class="sheet-head"><h3>${esc(f.label)}</h3><span class="eyebrow num">${esc(f.date)}</span></div>
+    <div class="route num">
+      <div><div class="code">${f.fromCode}</div><div class="t">${f.dep} ${f.depTz}</div></div>
+      <div class="mid">${esc(f.flight)}<br>———</div>
+      <div class="r"><div class="code">${f.toCode}</div><div class="t">${f.arr} ${f.arrTz}</div></div>
+    </div>
+    <dl class="dl">
+      <dt>Airline</dt><dd>${val(f.airline)}</dd>
+      <dt>Flight</dt><dd class="num">${esc(f.flight)}</dd>
+      <dt>From</dt><dd>${esc(f.from)}${f.terminal ? ", " + esc(f.terminal) : ""}</dd>
+      <dt>Check-in</dt><dd class="num">${esc(f.checkin)}</dd>
+      <dt>Departure</dt><dd class="num">${f.dep} ${f.depTz}</dd>
+      <dt>Arrival</dt><dd class="num">${f.arr} ${f.arrTz}</dd>
+      <dt>Baggage</dt><dd>${val(f.baggage)}</dd>
+    </dl>
+    <div class="btns">
+      ${btn("View E-Ticket", f.eticket, {solid:true, pending:"E-Ticket · Soon"})}
+      ${btn("Boarding Pass", f.boardingPass, {pending:"Boarding Pass · After check-in"})}
+      ${btn("Flight Details", "https://www.google.com/search?q=" + encodeURIComponent(f.flight.replace(/\s/g,"") + " flight status"))}
+    </div>
+  </div>`;
+}
+$("#flightCards").innerHTML = flightCard(GUIDE.flights.out) + flightCard(GUIDE.flights.ret);
+
+const P = GUIDE.people;
+$("#arrivalSheet").innerHTML = `
+  <div class="sheet-head"><h3>Airport Arrival</h3><span class="eyebrow">Lombok · 16 Oct</span></div>
+  <dl class="dl">
+    <dt>Meeting Point</dt><dd>${esc(GUIDE.arrival.meetingPoint)}</dd>
+    <dt>On Board</dt><dd>Local bites for the drive, a Werkudara signature</dd>
+    <dt>To Hotel</dt><dd>${esc(GUIDE.hotel.transfer)}</dd>
+    <dt>Your Host</dt><dd>${esc(P.host.name)}${P.host.wa ? ` · <span class="phone">${fmtPhone(P.host.wa)}</span>` : ""}</dd>
+    <dt>Driver</dt><dd>${val(P.driver.name)}${P.driver.wa ? ` · <span class="phone">${fmtPhone(P.driver.wa)}</span>` : ""}</dd>
+  </dl>
+  <div class="btns">${btn("Chat with Raja", P.host.wa && wa(P.host.wa), {solid:true, pending:"Chat with Raja · Soon"})}</div>`;
+
+$("#departSheet").innerHTML = `
+  <div class="sheet-head"><h3>Departing Yogyakarta</h3><span class="eyebrow">YIA · 16 Oct</span></div>
+  <p>${esc(GUIDE.departureAirport.assist)}. ${GUIDE.departureAirport.train ? esc(GUIDE.departureAirport.train) + ". " : ""}Bulqis will be with you until boarding.</p>
+  <dl class="dl">
+    <dt>Check-in</dt><dd class="num">${esc(GUIDE.flights.out.checkin)} · ${esc(GUIDE.flights.out.terminal)}</dd>
+    <dt>Companion</dt><dd>${esc(P.companion.name)}${P.companion.wa ? ` · <span class="phone">${fmtPhone(P.companion.wa)}</span>` : ""}</dd>
+  </dl>
+  <div class="btns">${btn("Chat with Bulqis", P.companion.wa && wa(P.companion.wa), {solid:true, pending:"Chat with Bulqis · Soon"})}${copyBtn(fmtPhone(P.companion.wa))}</div>`;
+
+/* Stay */
+const H = GUIDE.hotel;
+$("#staySheet").innerHTML = `
+  <div class="sheet-head"><h3>${esc(H.name)}</h3></div>
+  ${H.about ? `<p class="lede">${esc(H.about)}</p>` : ""}
+  <dl class="dl">
+    <dt>Room</dt><dd>${val(H.room)}</dd>
+    <dt>Location</dt><dd>${esc(H.location)}</dd>
+    <dt>From Airport</dt><dd>${esc(H.transfer)}</dd>
+    <dt>Check-in</dt><dd class="num">${esc(H.checkin)}</dd>
+    <dt>Check-out</dt><dd class="num">${esc(H.checkout)}</dd>
+  </dl>
+  <hr class="rule">
+  <div style="display:grid;gap:6px"><span class="eyebrow">Your Comforts</span>
+    ${H.comforts.map(c => `<div class="num">${esc(c)}</div>`).join("")}
+  </div>
+  <div class="btns">
+    ${btn("View Hotel", H.website || "https://www.google.com/search?q=" + encodeURIComponent(H.name + " Lombok"))}
+    ${btn("Get Directions", mapsRaw(H.mapsQuery + " Lombok"), {solid:true})}
+    ${H.phone ? btn("WhatsApp Hotel", wa(H.phone)) : btn("Contact via Raja", P.host.wa && wa(P.host.wa, "Hello Raja, a request for the hotel:"), {pending:"Contact Hotel · via Raja"})}
+  </div>`;
+
+/* Itinerary */
+const DM = GUIDE.departureMorning;
+let current = 0;
+function resolveTime(t) { return t === "wakeUp" ? DM.wakeUp : t === "checkout" ? DM.checkout : t; }
+function renderDay(i) {
+  current = i;
+  document.querySelectorAll(".tab").forEach((b, k) => b.setAttribute("aria-selected", k === i));
+  const d = DAYS[i];
+  const nowKey = nextItem();
+  let html = `<div class="day-head"><span class="eyebrow num">Day ${d.n} · ${d.dow}, ${d.short.replace(" Oct"," October")}</span>
+    <h3>${esc(d.title)}</h3><p class="s">${esc(d.sub)}</p></div>`;
+  if (d.special) html += `<div class="anniv num" aria-label="18 October 2011 to 18 October 2026">
+      <span class="y">18.10.2011<small>THE BEGINNING</small></span><span class="line"></span>
+      <span class="y" style="text-align:right">18.10.2026<small>FIFTEEN YEARS</small></span></div>`;
+  html += `<ul class="tl">` + d.items.map((it, k) => {
+    const t = resolveTime(it.t);
+    const desc = it.d === "breakfastBox" ? DM.breakfastBox : it.d;
+    const isNow = nowKey && nowKey.day === i && nowKey.idx === k;
+    return `<li class="${it.minor ? "minor" : ""}${it.key ? " key" : ""}${isNow ? " now-item" : ""}">
+      <span class="time">${t ? esc(t) : '<span class="tbc">TBC</span>'}${it.tz ? `<small>${it.tz}</small>` : ""}</span>
+      <div><div class="act">${esc(it.a)}${isNow ? '<span class="pill">Next</span>' : ""}</div>
+        ${desc ? `<p class="desc">${esc(desc)}</p>` : ""}
+        ${it.p ? (it.q ? `<a class="place" href="${maps(it.q)}" target="_blank" rel="noopener">${esc(it.p)} ↗</a>` : `<span class="place">${esc(it.p)}</span>`) : ""}
+      </div></li>`;
+  }).join("") + `</ul>`;
+  if (d.departure) {
+    const R = GUIDE.flights.ret;
+    html += `<div class="sheet" id="departureEssentials">
+      <div class="sheet-head"><h3>Departure Essentials</h3><span class="eyebrow">19 Oct</span></div>
+      <dl class="dl">
+        <dt>Flight</dt><dd class="num">${R.airline ? esc(R.airline) + " · " : ""}${esc(R.flight)} · ${R.dep} WITA</dd>
+        <dt>Airport</dt><dd>Lombok International Airport</dd>
+        <dt>Meeting Point</dt><dd>${esc(DM.meetingPoint)} · 04:00</dd>
+        <dt>Driver</dt><dd>${val(P.driver.name)}${P.driver.wa ? ` · <span class="phone">${fmtPhone(P.driver.wa)}</span>` : ""}</dd>
+      </dl>
+      <div class="btns">
+        ${btn("View E-Ticket", R.eticket, {solid:true, pending:"E-Ticket · Soon"})}
+        ${btn("Boarding Pass", R.boardingPass, {pending:"Boarding Pass · After check-in"})}
+        ${btn("Contact Your Host", P.host.wa && wa(P.host.wa), {pending:"Contact Host · Soon"})}
+      </div></div>`;
+  }
+  $("#dayPanel").innerHTML = html;
+  try { localStorage.setItem("lombok-day", i); } catch (e) {}
+}
+$("#tabs").innerHTML = DAYS.map((d, i) => `<button class="tab${d.special ? " special" : ""}" role="tab" type="button" id="tab${i}">
+  <span>Day</span><b class="num">${d.n}</b><span class="num">${d.short}</span></button>`).join("");
+document.querySelectorAll(".tab").forEach((b, i) => b.addEventListener("click", () => renderDay(i)));
+document.querySelectorAll(".day-link").forEach(a => a.addEventListener("click", () => renderDay(+a.dataset.day)));
+
+/* Experiences */
+$("#expList").innerHTML = EXPERIENCES.map(e => `<article>
+  <span class="when">${esc(e.when)}</span><h3>${esc(e.title)}</h3><p class="lede">${esc(e.text)}</p>${e.what ? `<span class="note">${esc(e.what)}</span>` : ""}</article>`).join("");
+
+/* People */
+function personCard(p, extra) {
+  const initial = p.name ? p.name.charAt(0) : "·";
+  return `<div class="sheet person">
+    <div class="avatar">${p.photo ? `<img src="${esc(p.photo)}" alt="${esc(p.name)}">` : initial}</div>
+    <div class="body">
+      <span class="role">${esc(p.role)}</span>
+      <span class="name">${p.name ? esc(p.name) : TBC}</span>
+      ${p.note ? `<span class="note">${esc(p.note)}</span>` : ""}
+      ${extra || ""}
+      <span class="num">${p.wa ? `WhatsApp <span class="phone">${fmtPhone(p.wa)}</span>` : `WhatsApp ${TBC}`}</span>
+      <div class="btns">${btn("Chat on WhatsApp", p.wa && wa(p.wa), {solid:true, pending:"WhatsApp · Soon"})}${p.call ? btn("Call for Assistance", p.wa && "tel:+" + digits(p.wa)) : ""}${copyBtn(fmtPhone(p.wa))}</div>
+    </div></div>`;
+}
+const HST = P.host;
+$("#hostFeature").innerHTML = `<article class="host-feature">
+  <div class="portrait"><img src="${esc(HST.portrait || HST.photo)}" alt="${esc(HST.name)}"></div>
+  <div class="who">
+    <span class="title">Your Host in Lombok</span>
+    <span class="name">${esc(HST.name)}</span>
+    <span class="note">${esc(HST.note)}</span>
+    <div class="roles">${HST.roles.map(r => `<span>${esc(r)}</span>`).join("")}</div>
+  </div>
+  <p class="intro">${esc(HST.intro)}</p>
+  <span class="sign">— ${esc(HST.name)}</span>
+  <dl class="dl">
+    <dt>WhatsApp</dt><dd class="num"><span class="phone">${fmtPhone(HST.wa)}</span></dd>
+    <dt>With You</dt><dd>${esc(HST.with)}</dd>
+  </dl>
+  <div class="btns">${btn("Chat with Raja", HST.wa && wa(HST.wa), {solid:true})}${btn("Call Raja", HST.wa && "tel:+" + digits(HST.wa))}${copyBtn(fmtPhone(HST.wa))}</div>
+</article>`;
+
+$("#people").innerHTML =
+  personCard(P.companion) +
+  personCard({...P.driver, note:""}, `<span class="note">Vehicle: ${P.driver.vehicle ? esc(P.driver.vehicle) : TBC}</span>`) +
+  personCard(P.emergency);
+
+/* Good to know */
+$("#knowList").innerHTML = KNOW.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("");
+
+/* Copy */
+const toast = msg => { const t = $("#toast"); t.textContent = msg; t.hidden = false; clearTimeout(toast.h); toast.h = setTimeout(() => t.hidden = true, 1800); };
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-copy]"); if (!b) return;
+  const text = b.dataset.copy;
+  (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject())
+    .then(() => toast("Copied " + text))
+    .catch(() => toast(text));
+});
+
+/* Time awareness: WIB = UTC+7, WITA = UTC+8 */
+function stamp(date, t, tz) {
+  if (!t || !/^\d\d:\d\d$/.test(t)) return null;
+  return Date.parse(`${date}T${t}:00${tz === "WIB" ? "+07:00" : "+08:00"}`);
+}
+function nextItem() {
+  const now = Date.now();
+  for (let i = 0; i < DAYS.length; i++) for (let k = 0; k < DAYS[i].items.length; k++) {
+    const it = DAYS[i].items[k]; if (it.minor) continue;
+    const s = stamp(DAYS[i].date, resolveTime(it.t), it.tz);
+    if (s && s > now) return {day:i, idx:k, it, s};
+  }
+  return null;
+}
+function todayIndex() {
+  const wita = new Date(Date.now() + 8 * 3600e3).toISOString().slice(0, 10);
+  return DAYS.findIndex(d => d.date === wita);
+}
+function renderNow() {
+  const box = $("#now");
+  const now = Date.now();
+  const eveStart = Date.parse("2026-10-18T17:00:00+08:00"), eveEnd = Date.parse("2026-10-19T06:10:00+08:00");
+  if (now >= eveStart && now < eveEnd) {
+    const R = GUIDE.flights.ret;
+    box.className = "now alert";
+    box.innerHTML = `<span class="eyebrow">Early departure · Monday 19 October</span>
+      <div class="what">Transfer at 04:00 · ${esc(R.flight)} departs ${R.dep}</div>
+      <div class="when num">${DM.wakeUp ? "Wake-up call " + esc(DM.wakeUp) + " · " : ""}${DM.checkout ? "Check-out " + esc(DM.checkout) + " · " : ""}Meet in the ${esc(DM.meetingPoint.toLowerCase())}</div>
+      <div class="actions btns"><a class="btn solid" href="#itinerary" data-day="3">Departure Essentials</a>${btn("E-Ticket", R.eticket, {pending:"E-Ticket · Soon"})}</div>`;
+    box.querySelector("[data-day]").addEventListener("click", () => renderDay(3));
+    return;
+  }
+  const n = nextItem();
+  if (!n) {
+    box.className = "now";
+    box.innerHTML = `<span class="eyebrow">Welcome home</span><div class="what">Thank you for travelling with us.</div>`;
+    return;
+  }
+  const d = DAYS[n.day];
+  const it = n.it;
+  const t = resolveTime(it.t);
+  box.className = "now";
+  box.innerHTML = `<span class="eyebrow">${n.day === todayIndex() ? "Up next today" : "Up next"}</span>
+    <div class="what">${esc(it.a)}</div>
+    <div class="when num">${d.dow}, ${d.short.replace(" Oct"," October")} · ${esc(t)} ${it.tz || "WITA"}${it.p ? " · " + esc(it.p) : ""}</div>
+    <div class="actions btns"><a class="btn solid" href="#itinerary" data-day="${n.day}">Today's Plan</a>${it.q ? btn("Directions", maps(it.q)) : ""}</div>`;
+  box.querySelector("[data-day]").addEventListener("click", () => renderDay(n.day));
+}
+
+/* Initial day: today if within the trip, else the last viewed, else Day 01 */
+let start = todayIndex();
+if (start < 0) { try { const s = +localStorage.getItem("lombok-day"); if (s >= 0 && s < 4) start = s; } catch (e) {} }
+if (start < 0) start = 0;
+renderDay(start);
+renderNow();
+setInterval(() => { renderNow(); renderDay(current); }, 60000);
+
+/* Active quick-access item */
+const links = [...document.querySelectorAll(".nav a")];
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) links.forEach(a => a.classList.toggle("on", a.dataset.sec === e.target.id));
+}), {rootMargin: "-40% 0px -55% 0px"});
+["flights","stay","itinerary","host"].forEach(id => io.observe(document.getElementById(id)));
+</script>
+</body></html>
